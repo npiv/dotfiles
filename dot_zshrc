@@ -1,3 +1,6 @@
+LC_CTYPE=en_US.UTF-8
+LC_ALL=en_US.UTF-8
+
 # Setup zplug
 # --------------------------------------
 if [[ "$OSTYPE" == darwin* ]]; then
@@ -19,8 +22,6 @@ fi
 
 zplug load # --verbose (if curious what is going on)
 
-# load autojump if there
-[ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
 # set nvim as default editor if exists
 if command -v nvim > /dev/null; then
@@ -33,6 +34,8 @@ fi
 if [[ "$OSTYPE" == darwin* ]]; then
   # Auto-completion
   [[ $- == *i* ]] && source "$HOMEBREW_PREFIX/opt/fzf/shell/completion.zsh" 2> /dev/null
+  # load autojump if there
+  [ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
   # Key bindings
   source "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.zsh"
@@ -44,11 +47,11 @@ else
 
   # Auto-completion
   # ---------------
-  [[ $- == *i* ]] && source "$HOME/.fzf/shell/completion.zsh" 2> /dev/null
+  [[ $- == *i* ]] && source "/usr/share/doc/fzf/examples/completion.zsh" 2> /dev/null
 
   # Key bindings
   # ------------
-  source "$HOME/.fzf/shell/key-bindings.zsh"
+  source "/usr/share/doc/fzf/examples/key-bindings.zsh"
 fi
 
 
@@ -64,4 +67,4 @@ eval "$(starship init zsh)"
 # load local (non-suitable for pushing to GH) tweaks
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
-export PATH="$PATH:~/.bin"
+export PATH="$PATH:$HOME/bin"
