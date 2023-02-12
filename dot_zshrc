@@ -41,6 +41,7 @@ else
     export PATH="$PATH:$HOME/.fzf/bin"
   fi
 
+
   # Auto-completion
   # ---------------
   [[ $- == *i* ]] && source "$HOME/.fzf/shell/completion.zsh" 2> /dev/null
@@ -62,3 +63,5 @@ eval "$(starship init zsh)"
 
 # load local (non-suitable for pushing to GH) tweaks
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
+export PATH="$PATH:~/.bin"
