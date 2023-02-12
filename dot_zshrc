@@ -68,4 +68,13 @@ eval "$(starship init zsh)"
 # load local (non-suitable for pushing to GH) tweaks
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
+alias gs="git status -sb"
+alias cls="clear"
+alias gla="git log --pretty=format:'%C(yellow)%h%Cred%d%Creset - %C(cyan)%an %Creset: %s %Cgreen(%cr)'"
+alias gl="gla -20"
+alias gll="gla --graph"
+alias grep="grep --color"
+alias gpom="git push origin master"
+alias ll="ls -ltr"
+
 export PATH="$PATH:$HOME/bin"
