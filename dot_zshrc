@@ -4,9 +4,9 @@ LC_ALL=en_US.UTF-8
 # Setup zplug
 # --------------------------------------
 if [[ "$OSTYPE" == darwin* ]]; then
-  export ZPLUG_HOME=$HOMEBREW_PREFIX/opt/zplug
+    export ZPLUG_HOME=$HOMEBREW_PREFIX/opt/zplug
 else
-  export ZPLUG_HOME=$HOME/.zplug
+    export ZPLUG_HOME=$HOME/.zplug
 fi
 
 source $ZPLUG_HOME/init.zsh
@@ -18,7 +18,7 @@ zplug "jeffreytse/zsh-vi-mode"
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check; then
-  zplug install
+    zplug install
 fi
 
 zplug load # --verbose (if curious what is going on)
@@ -26,25 +26,30 @@ zplug load # --verbose (if curious what is going on)
 
 # set nvim as default editor if exists
 if command -v nvim > /dev/null; then
-  export EDITOR='nvim'
-  alias vi=nvim
+    export EDITOR='nvim'
+    alias vi=nvim
 else
-  export EDITOR='vim'
+    export EDITOR='vim'
 fi
 
 if [[ "$OSTYPE" == darwin* ]]; then
-  # Auto-completion
-  [[ $- == *i* ]] && source "$HOMEBREW_PREFIX/opt/fzf/shell/completion.zsh" 2> /dev/null
-  # load autojump if there
-  [ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
+    # Setup fzf
+    # ---------
+    if [[ ! "$PATH" == */opt/homebrew/opt/fzf/bin* ]]; then
+        PATH="${PATH:+${PATH}:}/opt/homebrew/opt/fzf/bin"
+    fi
 
-  # Key bindings
-  source "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.zsh"
+    # Auto-completion
+    # ---------------
+    [[ $- == *i* ]] && source "/opt/homebrew/opt/fzf/shell/completion.zsh" 2> /dev/null
+
+    # Key bindings
+    # ------------
+    source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
 else
-  if [[ ! "$PATH" == */$HOME/.fzf/bin* ]]; then
-    export PATH="$PATH:$HOME/.fzf/bin"
-  fi
-
+    if [[ ! "$PATH" == */$HOME/.fzf/bin* ]]; then
+        export PATH="$PATH:$HOME/.fzf/bin"
+    fi
 
   # Auto-completion
   # ---------------
@@ -58,9 +63,9 @@ fi
 
 # ensure ls uses colors
 if [[ "$OSTYPE" == darwin* ]]; then
-  alias ls="ls -G"
+    alias ls="ls -G"
 else
-  alias ls="ls --color=auto"
+    alias ls="ls --color=auto"
 fi
 
 eval "$(starship init zsh)"

@@ -11,7 +11,6 @@ lsp.nvim_workspace()
 lsp.ensure_installed({
 	'tsserver',
 	'eslint',
-	--'lua-language-server',
 	'rust_analyzer'
 })
 
