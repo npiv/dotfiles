@@ -8,11 +8,11 @@ local lsp = require('lsp-zero').preset({
 -- (Optional) Configure lua language server for neovim
 lsp.nvim_workspace()
 
-lsp.ensure_installed({
-	'tsserver',
-	'eslint',
-	'rust_analyzer'
-})
+-- lsp.ensure_installed({
+-- 	'tsserver',
+-- 	'eslint',
+-- 	'rust_analyzer'
+-- })
 
 local cmp = require('cmp')
 
