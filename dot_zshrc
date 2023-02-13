@@ -46,6 +46,9 @@ if [[ "$OSTYPE" == darwin* ]]; then
     # Key bindings
     # ------------
     source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
+
+    # j for jump
+    [ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
 else
     if [[ ! "$PATH" == */$HOME/.fzf/bin* ]]; then
         export PATH="$PATH:$HOME/.fzf/bin"
