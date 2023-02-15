@@ -74,6 +74,10 @@ if [[ "$OSTYPE" == darwin* ]]; then
     source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
 
 else
+    . /usr/share/autojump/autojump.sh 
+    # to fix
+    alias vi=/home/npiv/.local/bin/nvim
+    
     if [[ ! "$PATH" == */$HOME/.fzf/bin* ]]; then
         export PATH="$PATH:$HOME/.fzf/bin"
     fi
