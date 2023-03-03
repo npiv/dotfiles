@@ -52,8 +52,13 @@ alias gll="gla --graph"
 alias grep="grep --color"
 alias gpom="git push origin master"
 alias ll="ls -ltr"
+alias la="ls -ltra"
 alias jb="cd -"
 
+if test -d /mnt/c/Windows; then
+  # reset path on WSL too bloated
+  export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib"
+fi
 export PATH="$PATH:$HOME/bin"
 
 if [[ "$OSTYPE" == darwin* ]]; then
