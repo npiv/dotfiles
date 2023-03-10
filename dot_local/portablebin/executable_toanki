@@ -1,0 +1,53 @@
+#!/usr/bin/env python3
+
+import json
+import urllib.request
+import sys
+
+
+def request(action, **params):
+    return {"action": action, "params": params, "version": 6}
+
+
+def invoke(action, **params):
+    requestJson = json.dumps(request(action, **params)).encode("utf-8")
+    response = json.load(
+        urllib.request.urlopen(
+            urllib.request.Request("http://192.168.1.107:8765", requestJson)
+        )
+    )
+    if len(response) != 2:
+        raise Exception("response has an unexpected number of fields")
+    if "error" not in response:
+        raise Exception("response is missing required error field")
+    if "result" not in response:
+        raise Exception("response is missing required result field")
+    if response["error"] is not None:
+        raise Exception(response["error"])
+    return response["result"]
+
+
+def map_note(note):
+    return {
+        "Front": note["question"],
+        "Back": note["answer"]
+    }
+
+def add_notes(notes, tags):
+    invoke(
+        "addNotes",
+        notes=[{
+            "deckName": "Default",
+            "modelName": "Basic",
+            "fields": map_note(note),
+            "tags": tags,
+            "options": {"allowDuplicate": False},
+        } for note in notes],
+    )
+
+if __name__ == "__main__":
+    piped_input = None
+    if not sys.stdin.isatty():
+        piped_input = sys.stdin.read()
+        if piped_input:
+            add_notes(json.loads(piped_input), ["chatgpt"])
