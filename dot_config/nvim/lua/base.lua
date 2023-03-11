@@ -25,3 +25,5 @@ opt.expandtab = true
 
 opt.ignorecase = true
 opt.termguicolors = true
+
+opt.signcolumn = "yes"
