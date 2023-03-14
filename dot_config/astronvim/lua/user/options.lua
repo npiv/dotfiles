@@ -1,0 +1,5 @@
+return {
+  opt = {
+    swapfile = false
+  },
+}
