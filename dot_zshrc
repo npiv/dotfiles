@@ -51,7 +51,7 @@ alias grep="grep --color"
 alias gpom="git push origin master"
 alias ll="ls -ltr"
 alias la="ls -ltra"
-alias jb="cd -"
+alias gopy=". venv/bin/activate"
 
 if test -d /mnt/c/Windows; then
   # reset path on WSL too bloated
