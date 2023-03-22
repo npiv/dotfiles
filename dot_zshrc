@@ -31,6 +31,7 @@ zplug load # --verbose (if curious what is going on)
 # ensure ls uses colors
 if [[ "$OSTYPE" == darwin* ]]; then
     alias ls="ls -G"
+    alias vi=nvim
 else
     alias ls="ls --color=auto"
 fi
@@ -48,6 +49,7 @@ alias gpom="git push origin master"
 alias ll="ls -ltr"
 alias la="ls -ltra"
 alias gopy=". venv/bin/activate"
+alias c=chatblade
 
 if test -d /mnt/c/Windows; then
   # reset path on WSL too bloated
