@@ -11,10 +11,14 @@ fi
 
 source $ZPLUG_HOME/init.zsh
 
+export EDITOR='nvim'
+
 zplug mafredri/zsh-async, use:async.zsh, from:github
 zplug modules/history, from:prezto
 zplug modules/completion, from:prezto
-#zplug "jeffreytse/zsh-vi-mode" TODO fix this it currently breaks fzf
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
 set -o vi
 
 # Install plugins if there are plugins that have not been installed
@@ -23,14 +27,6 @@ if ! zplug check; then
 fi
 
 zplug load # --verbose (if curious what is going on)
-
-set nvim as default editor if exists
-if command -v nvim > /dev/null; then
-    export EDITOR='nvim'
-    alias vi=nvim
-else
-    export EDITOR='vim'
-fi
 
 # ensure ls uses colors
 if [[ "$OSTYPE" == darwin* ]]; then
@@ -97,3 +93,4 @@ fi
 
 # load local (non-suitable for pushing to GH) tweaks
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
+[ -f ~/.cargo/env ] && source ~/.cargo/env

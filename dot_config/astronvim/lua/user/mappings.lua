@@ -1,6 +1,6 @@
 return {
   n = {
-    [";;"] = { "<cmd>:e #<cr>", desc = "switch to previous buffer" },
+    [";;"] = { "<cmd>e #<cr>", desc = "jump back to last file" },
     ["<leader>pp"] = { "<cmd>tabnew<cr>", desc = "New tab" },
     ["<leader>p["] = {
       function()
