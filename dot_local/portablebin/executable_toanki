@@ -13,7 +13,7 @@ def invoke(action, **params):
     requestJson = json.dumps(request(action, **params)).encode("utf-8")
     response = json.load(
         urllib.request.urlopen(
-            urllib.request.Request("http://192.168.1.107:8765", requestJson)
+            urllib.request.Request("http://127.0.0.1:8765", requestJson)
         )
     )
     if len(response) != 2:
@@ -28,22 +28,57 @@ def invoke(action, **params):
 
 
 def map_note(note):
-    return {
-        "Front": note["question"],
-        "Back": note["answer"]
-    }
+    return {"Front": note["question"], "Back": note["answer"]}
+
 
 def add_notes(notes, tags):
-    invoke(
-        "addNotes",
-        notes=[{
-            "deckName": "Default",
-            "modelName": "Basic",
-            "fields": map_note(note),
-            "tags": tags,
-            "options": {"allowDuplicate": False},
-        } for note in notes],
-    )
+    if "audio_file" in notes[0]:
+        invoke(
+            "addNotes",
+            notes=[
+                {
+                    "deckName": "spanish::regular",
+                    "modelName": "general",
+                    "fields": {
+                        "question": note["question"],
+                        "example": note["example"],
+                        "answer": note["answer"],
+                    },
+                    "tags": tags,
+                    "options": {"allowDupllicate": False},
+                    "audio": [
+                        {
+                            "path": note["audio_file"],
+                            "filename": note["audio_file"],
+                            "fields": ["answer_audio"],
+                        }
+                    ],
+                    "picture": [
+                        {
+                            "path": note["img_file"],
+                            "filename": note["img_file"],
+                            "fields": ["answer_img"],
+                        }
+                    ],
+                }
+                for note in notes
+            ],
+        )
+    else:
+        invoke(
+            "addNotes",
+            notes=[
+                {
+                    "deckName": "Default",
+                    "modelName": "Basic",
+                    "fields": map_note(note),
+                    "tags": tags,
+                    "options": {"allowDuplicate": False},
+                }
+                for note in notes
+            ],
+        )
+
 
 if __name__ == "__main__":
     piped_input = None
