@@ -50,6 +50,7 @@ alias ll="ls -ltr"
 alias la="ls -ltra"
 alias gopy=". venv/bin/activate"
 alias c=chatblade
+alias cdf=cd "$(fd -H -t directory | fzf)"
 
 if test -d /mnt/c/Windows; then
   # reset path on WSL too bloated
