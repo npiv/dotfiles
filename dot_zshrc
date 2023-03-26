@@ -52,6 +52,19 @@ alias gopy=". venv/bin/activate"
 alias c=chatblade
 alias cdf='cd "$(fd -H -t directory -a | fzf)"'
 
+function pick_json_word() {
+  word=$(cat $1 | jq -r ".[] | .word" | fzf --preview "cat $1 | jq --arg a {} -r \".[] | select(.word == \\\$a)\"")
+  cat $1 | jq --arg a $word ".[] | select(.word == \$a)" | chatblade -c 4 -s -p es_json 
+  echo "is it good? (y/n)"
+  read answer
+  if [ $answer = "y" ]; then
+    chatblade -l -e | toanki $2
+    echo "added to anki"
+  else
+    echo "not added to anki"
+  fi
+}
+
 if test -d /mnt/c/Windows; then
   # reset path on WSL too bloated
   export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Users/user/AppData/Local/Programs/Microsoft VS Code/bin/"
