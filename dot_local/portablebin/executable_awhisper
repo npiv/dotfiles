@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# This script is used to transcribe a video file into a SRT file using whisper.cpp
+# it takes 3 arguments: the video file, the language and the model
+
+BASE_DIR=~/code/whisper.cpp/
+
+VIDEO_FILE=$1
+LANGUAGE=$2
+MODEL=$3
+
+# if MODEL not set use base
+if [ -z "$MODEL" ]
+then
+    MODEL="base"
+fi
+
+ffmpeg -i $VIDEO_FILE -ar 16000 -ac 1 -c:a pcm_s16le tmp.wav 
+$BASE_DIR/main -f tmp.wav -m $BASE_DIR/models/ggml-$MODEL.bin -l $LANGUAGE -pc -osrt -of $VIDEO_FILE.srt
+rm tmp.wav
