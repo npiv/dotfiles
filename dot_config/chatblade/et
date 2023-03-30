@@ -15,6 +15,4 @@ The following is a what a perfect answer would like for the word "disparage"
 You will return answers in JSON only. Answer truthfully and if you don't know then say so. Keep questions as close as possible to the
 provided examples. Make sure to include an example in the definition question. Use HTML within the strings to nicely format your answers.
 
-If multiple words are provided, create questions and answers for each of them in one list. 
-
 Only answer in JSON, don't provide any more text. Valid JSON uses "" quotes to wrap its items.
