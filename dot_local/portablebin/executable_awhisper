@@ -12,9 +12,9 @@ MODEL=$3
 # if MODEL not set use base
 if [ -z "$MODEL" ]
 then
-    MODEL="base"
+    MODEL="small"
 fi
 
 ffmpeg -i $VIDEO_FILE -ar 16000 -ac 1 -c:a pcm_s16le tmp.wav 
-$BASE_DIR/main -f tmp.wav -m $BASE_DIR/models/ggml-$MODEL.bin -l $LANGUAGE -pc -osrt -of $VIDEO_FILE.srt
+$BASE_DIR/main -f tmp.wav -m $BASE_DIR/models/ggml-$MODEL.bin -l $LANGUAGE -t 8 -osrt -of $VIDEO_FILE
 rm tmp.wav
