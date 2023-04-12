@@ -3,11 +3,23 @@
 # This script is used to transcribe a video file into a SRT file using whisper.cpp
 # it takes 3 arguments: the video file, the language and the model
 
-BASE_DIR=~/code/whisper.cpp/
+BASE_DIR=~/appcode/whisper.cpp/
 
 VIDEO_FILE=$1
 LANGUAGE=$2
 MODEL=$3
+
+if [ -z "$VIDEO_FILE" ]
+then
+    echo "Please provide a video file"
+    exit 1
+fi
+
+if [ -z "$LANGUAGE" ]
+then
+    echo "Please provide a language"
+    exit 1
+fi
 
 # if MODEL not set use base
 if [ -z "$MODEL" ]

@@ -1,0 +1,32 @@
+#!/bin/bash
+
+FILE_NAME="$1"
+if [[ -z $FILE_NAME ]]; then
+    echo "enter a video name"
+    exit 1;
+fi
+
+# use fzf to filter for phrase 
+PHRASE=$(cat "$FILE_NAME.srt" | fzf)
+if [[ -z $PHRASE ]]; then
+    exit 1;
+fi
+
+# use fzf to filter for word in phrase
+WORD=$(echo $PHRASE | tr -s '[[:punct:][:space:]]' '\n' | fzf)
+if [[ -z $WORD ]]; then
+    echo "What part of the phrase would you like to use?"
+    read WORD
+fi
+
+if [[ -z $WORD ]]; then
+    exit 1;
+fi
+
+cat "$FILE_NAME.srt" | grep "$PHRASE" -C1 | chatblade -p es -s $WORD -c 4
+chatblade -l -e | python3 ~/.local/portablebin/extract_media_for_anki.py "$FILE_NAME" > tmp.json
+cat tmp.json | toanki
+rm tmp.json
+
+x=$(printf '%q' "$FILE_NAME")
+rm ${x}_*
