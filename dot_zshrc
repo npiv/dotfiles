@@ -49,8 +49,9 @@ alias gpom="git push origin master"
 alias ll="ls -ltr"
 alias la="ls -ltra"
 alias gopy=". venv/bin/activate"
-alias c=chatblade
 alias cdf='cd "$(fd -H -t directory -a | fzf)"'
+alias c=chatblade
+alias et="chatblade -p et -c 4 -s"
 
 function pick_json_word() {
   word=$(cat $1 | jq -r ".[] | .word" | fzf --preview "cat $1 | jq --arg a {} -r \".[] | select(.word == \\\$a)\"")
