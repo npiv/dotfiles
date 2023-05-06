@@ -7,6 +7,7 @@ return {
         print("it works")
       end,
       desc = "Pick to close",
-    }
+    },
+    ["<f8>"] = { "<cmd>NeoAI<cr>" }
   }
 }
