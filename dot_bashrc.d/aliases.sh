@@ -14,3 +14,9 @@ alias cdf='cd "$(fd -H -t directory -a | fzf)"'
 alias c=chatblade
 alias chat="chatblade -c 4t -s -i"
 alias ask="chatblade -c 4t -s"
+
+alias ls='eza -lh --group-directories-first --icons'
+alias lsa='ls -a'
+alias lt='eza --tree --level=2 --long --icons --git'
+alias lta='lt -a'
+alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
