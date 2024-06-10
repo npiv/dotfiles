@@ -15,7 +15,6 @@ alias ask="chatblade -c 4t -s"
 alias chedit="chezmoi edit --apply"
 
 alias ls='eza -lh --group-directories-first --icons'
-alias l='ls'
 alias la='ls -a'
 alias lt='eza --tree --level=2 --long --icons --git'
 alias lta='lt -a'
