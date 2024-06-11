@@ -15,6 +15,7 @@ alias ask="chatblade -c 4t -s"
 alias chedit="chezmoi edit --apply"
 
 alias d=podman
+alias k=kubectl
 
 alias ls='eza -lh --group-directories-first --icons'
 alias l='ls'
