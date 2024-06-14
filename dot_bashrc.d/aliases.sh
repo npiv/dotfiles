@@ -14,6 +14,8 @@ alias chat="chatblade -c 4t -s -i"
 alias ask="chatblade -c 4t -s"
 alias chedit="chezmoi edit --apply"
 
+alias pnpx="pnpm dlx"
+
 alias d=podman
 alias k=kubectl
 
