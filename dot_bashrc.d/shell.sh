@@ -4,5 +4,7 @@ HISTCONTROL=ignoreboth
 HISTSIZE=32768
 HISTFILESIZE="${HISTSIZE}"
 
-# Autocompletion
-source /usr/share/bash-completion/bash_completion
+# Autocompletion if exists
+if [ -f /usr/share/bash-completion/bash_completion ]; then
+  . /usr/share/bash-completion/bash_completion
+fi
