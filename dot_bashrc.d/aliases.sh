@@ -20,6 +20,7 @@ alias d=podman
 alias k=kubectl
 
 alias ls='eza -lh --group-directories-first --icons'
+alias ll='ls -l'
 alias l='ls'
 alias la='ls -a'
 alias lt='eza --tree --level=2 --long --icons --git'
