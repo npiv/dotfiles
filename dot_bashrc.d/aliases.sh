@@ -21,7 +21,9 @@ alias d=podman
 alias k=kubectl
 
 function qpush() {
-	git add --all && git commit -m $1 && git push origin main
+	git add --all
+	git commit -m $1
+	git push origin main
 }
 
 alias ls='eza -lh --group-directories-first --icons'
