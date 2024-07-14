@@ -20,6 +20,7 @@ alias pnpx="pnpm dlx"
 alias d=podman
 alias k=kubectl
 
+alias qpush'git add --all && git commit -m {} && git push origin main'
 alias ls='eza -lh --group-directories-first --icons'
 alias ll='ls -l'
 alias l='ls'
