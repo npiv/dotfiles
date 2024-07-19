@@ -20,6 +20,8 @@ alias pnpx="pnpm dlx"
 alias d=podman
 alias k=kubectl
 
+alias docker-by-mem="docker stats --no-stream --format \"table {{.MemPerc}}\t{{.Name}}\" | sort -r -k1""
+
 function qpush() {
 	git add --all
 	git commit -m $1
