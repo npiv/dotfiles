@@ -1,4 +1,5 @@
-{{ if ne .chezmoi.os "linux" -}}
+{{ if ne .chezmoi.os "darwin" -}}
+{{ else -}}
 #!/bin/sh
 curl -sS https://starship.rs/install.sh >install.sh
 chmod +x install.sh
