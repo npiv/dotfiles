@@ -1,5 +1,5 @@
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply npiv 
-  
+<pre>
           ____  
         o8%8888,    
       o88%8888888.  
@@ -17,3 +17,4 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply npiv
  d88%            %%%8--'-.  
 /88:.__ ,       _%-' ---  -  
     '''::===..-'   =  --.
+</pre>
