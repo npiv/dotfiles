@@ -1,9 +1,11 @@
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
+{{ if eq .chezmoi.os "darwin" -}}
 export PATH="/opt/homebrew/bin:$PATH"
+{{ end -}}
+
+export PATH="~/bin/:$PATH"
 
 for f in ~/.bashrc.d/*; do
 	. "$f" || true
 done
-
-. "$HOME/.cargo/env"

@@ -2,8 +2,11 @@
 echo "just on osx"
 {{ else if eq .chezmoi.os "linux" -}}
 #!/bin/sh
+
 curl -sS https://starship.rs/install.sh > install.sh
 chmod +x install.sh
 ./install.sh -f -b ~/bin/
 rm install.sh
+
+sudo apt install fzf autojump
 {{ end -}}
