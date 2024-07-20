@@ -1,5 +1,5 @@
 # add if [[ "$OSTYPE" == darwin* ]]; then to case statement
-eval "$(fzf --bash)"
+eval "$(fzf --bash 2>/dev/null)"
 #case "$OSTYPE" in
 #"linux-gnu")
 #	. /usr/share/fzf/shell/key-bindings.bash
