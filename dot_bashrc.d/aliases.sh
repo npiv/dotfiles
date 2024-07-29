@@ -30,7 +30,7 @@ function qpush() {
 
 alias ls='eza --group-directories-first'
 alias ll='ls -l'
-alias l='ls'
+alias l='ls --git-ignore'
 alias la='ls -a'
 alias lt='eza --tree --level=2 --long --git'
 alias lta='lt -a'
