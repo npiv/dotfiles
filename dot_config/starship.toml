@@ -1,0 +1,18 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+[aws]
+disabled=true
+
+[python]
+format='via [${symbol}${pyenv_prefix}(\($virtualenv\) )]($style)'
+detect_extensions=[]
+detect_files=[]
+
+[package]
+disabled=true
+
+[git_status]
+format='([\[$ahead_behind\]]($style) )'
+
+
