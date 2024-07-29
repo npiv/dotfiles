@@ -32,8 +32,9 @@ alias ls='eza --group-directories-first'
 alias ll='ls -l'
 alias l='ls'
 alias la='ls -a'
-alias lt='eza --tree --level=2 --long --icons --git'
+alias lt='eza --tree --level=2 --long --git'
 alias lta='lt -a'
+alias ltg='lt --git-ignore'
 
 export BAT_THEME="base16"
 alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
