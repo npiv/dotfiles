@@ -23,12 +23,12 @@ alias k=kubectl
 alias docker-by-mem='docker stats --no-stream --format "table {{.MemPerc}}\t{{.Name}}" | sort -r -k1'
 
 function qpush() {
-	git add --all
-	git commit -m $1
-	git push origin main
+  git add --all
+  git commit -m $1
+  git push origin main
 }
 
-alias ls='eza -lh --group-directories-first --icons'
+alias ls='eza --group-directories-first'
 alias ll='ls -l'
 alias l='ls'
 alias la='ls -a'
