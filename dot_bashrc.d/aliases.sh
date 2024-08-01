@@ -39,4 +39,4 @@ alias ltg='lt --git-ignore'
 export BAT_THEME="base16"
 alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
 
-alias gob='vim "$(fd -E Excalidraw -E media -t f . ~/Documents/darkwood | fzf --preview "bat --color=always --wrap=character --style=plain --terminal-width=70 {}" --select-1 --exit-0 --delimiter / --with-nth -1)"'
+alias gob='vim "$(fd -t f . ~/Documents/darkwood/notes/ | fzf --preview "bat --color=always --wrap=character --style=plain --terminal-width=70 {}" --select-1 --exit-0 --delimiter / --with-nth -1)"'
