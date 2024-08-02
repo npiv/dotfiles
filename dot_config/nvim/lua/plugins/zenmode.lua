@@ -24,14 +24,9 @@ return {
             font = '20',
           },
         },
-        on_open = function(win)
-          vim.g.vim_markdown_frontmatter = 1
-          vim.cmd 'Pencil'
-        end,
+        on_open = function(win) end,
         -- callback where you can add custom code when the Zen window closes
-        on_close = function()
-          vim.cmd 'PencilOff'
-        end,
+        on_close = function() end,
       }
     end
 
