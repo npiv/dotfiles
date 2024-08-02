@@ -1,5 +1,6 @@
 return {
   'folke/zen-mode.nvim',
+  dependencies = { 'folke/twilight.nvim' },
   config = function()
     local toggle_markdown = function()
       require('zen-mode').toggle {
@@ -54,23 +55,8 @@ return {
         on_close = function() end,
       }
     end
+
     vim.keymap.set('n', 'zo', toggle_markdown, { desc = 'Zen Obsidian' })
     vim.keymap.set('n', 'zm', toggle_default, { desc = 'Zen Mode' })
   end,
-
-  opts = {
-    window = {
-      width = 0.75,
-    },
-    plugins = {
-      tmux = { enabled = true },
-      gitsigns = { enabled = true },
-      twilight = { enabled = false },
-      wezterm = {
-        enabled = true,
-        -- can be either an absolute font size or the number of incremental steps
-        font = '+1', -- (10% increase per step)
-      },
-    },
-  },
 }

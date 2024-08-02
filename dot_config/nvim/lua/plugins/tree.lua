@@ -1,5 +1,6 @@
 return {
   'nvim-tree/nvim-tree.lua',
+  enabled = false,
   config = function()
     vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<cr>', { desc = 'Toggle [E]xplorer' })
     require('nvim-tree').setup {
