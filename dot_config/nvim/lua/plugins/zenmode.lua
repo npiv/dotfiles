@@ -13,6 +13,7 @@ return {
         },
         plugins = {
           tmux = { enabled = true },
+          zellij = { enabled = true },
           gitsigns = { enabled = true },
           wezterm = {
             enabled = true,
