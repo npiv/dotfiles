@@ -19,7 +19,7 @@ config.font = wezterm.font_with_fallback({
 })
 
 -- config.harfbuzz_features = { "calt=1", "clig=0", "liga=0", "zero", "ss01" }
-config.font_size = 19
+config.font_size = 17
 
 config.window_frame = {
 	font = wezterm.font({ family = font, weight = "Bold" }),
