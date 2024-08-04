@@ -12,7 +12,7 @@ return {
   keys = {
     { '<leader>oc', '<cmd>ObsidianNew<cr>', desc = 'Obsidian Create' },
     { '<leader>oo', '<cmd>ObsidianQuickSwitch<cr>', desc = 'Obsidian Open' },
-    { '<leader>so', '<cmd>ObsidianSearch<cr>', desc = 'Search Obsidian' },
+    { '<leader>fo', '<cmd>ObsidianSearch<cr>', desc = '[F]ind [O]bsidian' },
     { '<leader>ot', '<cmd>ObsidianToday<cr>', desc = 'Obsidian Today' },
   },
 
@@ -30,6 +30,8 @@ return {
       default_tags = { 'daily-notes' },
     },
 
+    ui = { enable = false },
+
     disable_frontmatter = true,
     notes_subdir = '',
     new_notes_location = 'notes_subdir',
@@ -45,9 +47,9 @@ return {
         vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
           pattern = { vim.fn.expand '~/Documents/' .. '**/*.md' },
           callback = function()
-            vim.g.vim_markdown_frontmatter = 1
+            -- vim.g.vim_markdown_frontmatter = 1
             vim.o.conceallevel = 2
-            vim.cmd 'PencilSoft'
+            -- vim.cmd 'PencilSoft'
           end,
         })
       end,
