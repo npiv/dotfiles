@@ -25,4 +25,5 @@ y = 8
 size = 14
 
 [font.normal]
-family = "FiraCode Nerd Font"
+family = "JetbrainsMono Nerd Font"
+
