@@ -10,10 +10,11 @@ return {
   },
 
   keys = {
-    { '<leader>oc', '<cmd>ObsidianNew<cr>', desc = 'Obsidian Create' },
-    { '<leader>oo', '<cmd>ObsidianQuickSwitch<cr>', desc = 'Obsidian Open' },
+    { '<leader>oc', '<cmd>ObsidianNew<cr>', desc = '[O]bsidian [C]reate' },
+    { '<leader>oo', '<cmd>ObsidianQuickSwitch<cr>', desc = '[O]bsidian [O]pen' },
     { '<leader>fo', '<cmd>ObsidianSearch<cr>', desc = '[F]ind [O]bsidian' },
-    { '<leader>ot', '<cmd>ObsidianToday<cr>', desc = 'Obsidian Today' },
+    { '<leader>ot', '<cmd>ObsidianToday<cr>', desc = '[O]bsidian [T]oday' },
+    { '<leader>od', '<cmd>ObsidianDailies<cr>', desc = '[O]bsidian [D]ailies' },
   },
 
   opts = {
@@ -30,6 +31,10 @@ return {
       default_tags = { 'daily-notes' },
     },
 
+    attachments = {
+      img_folder = 'imgs',
+    },
+
     ui = { enable = false },
 
     disable_frontmatter = true,
@@ -43,16 +48,18 @@ return {
     log_level = vim.log.levels.OFF,
 
     callbacks = {
-      post_setup = function()
-        vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
-          pattern = { vim.fn.expand '~/Documents/' .. '**/*.md' },
-          callback = function()
-            -- vim.g.vim_markdown_frontmatter = 1
-            vim.o.conceallevel = 2
-            -- vim.cmd 'PencilSoft'
-          end,
-        })
-      end,
+      vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
+        pattern = { vim.fn.expand '~/Documents/' .. '**/*.md' },
+        callback = function()
+          -- syntax match Hashtag /#\w\+/
+          vim.cmd 'syntax match Hashtag /#\\w+/'
+          vim.cmd 'highlight Hashtag ctermfg=Green guifg=pink guibg=darkgreen'
+
+          -- vim.g.vim_markdown_frontmatter = 1
+          vim.o.conceallevel = 2
+          vim.cmd 'PencilSoft'
+        end,
+      }),
     },
   },
 }

@@ -31,6 +31,8 @@ return {
     end
 
     vim.keymap.set('n', '<leader>zo', toggle_zen_mode(0.7, 0.9, 20), { desc = '[Z]en [O]pen' })
-    vim.keymap.set('n', '<leader>zb', toggle_zen_mode(0.55, 0.9, 18), { desc = '[Z]en [B]ig' })
+    vim.keymap.set('n', '<leader>zb', toggle_zen_mode(0.55, 0.9, 16), { desc = '[Z]en [B]ig' })
+    vim.keymap.set('n', '<leader>zs', toggle_zen_mode(0.9, 0.9, 16), { desc = '[Z]en [S]mall' })
+    vim.keymap.set('n', '<leader>zp', '<cmd>Pencil<cr>', { desc = '[Z]en [P]encil' })
   end,
 }

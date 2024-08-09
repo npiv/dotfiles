@@ -1,5 +1,6 @@
 return {
   'MeanderingProgrammer/markdown.nvim',
+  enabled = false,
   dependencies = {
     'preservim/vim-pencil',
   },

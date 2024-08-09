@@ -31,3 +31,6 @@ local opts = {
 }
 
 require('lazy').setup('plugins', opts)
+
+-- hack couldnt escape this via vim.run
+vim.cmd('source ' .. vim.fn.expand '~' .. '/.config/nvim/vim/highlight_tags.vim')
