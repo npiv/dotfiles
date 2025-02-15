@@ -4,6 +4,7 @@ return {
     priority = 1000, -- Make sure to load this before all the other start plugins.
     config = function()
       require('catppuccin').setup {
+        transparent_background = true,
         flavour = 'macchiato',
         integrations = {
           cmp = true,
