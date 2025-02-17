@@ -13,6 +13,7 @@ TERM = "xterm-256color"
 # startup_mode = "SimpleFullscreen"
 decorations = "None"
 dynamic_padding = true
+option_as_alt = "Both"
 # opacity = 0.9
 # blur = true
 
