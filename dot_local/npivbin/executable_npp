@@ -335,6 +335,9 @@ jobs:
         file: ./coverage.xml
 EOF
 
+# Get Claude file
+wget https://gist.githubusercontent.com/npiv/147c8b84174dadbcc71a69ab01ab2901/raw/580a2028861465f535b7d22888b4b6d833143f7f/CLAUDE.md
+
 # Initialize git repository
 git init
 git add .
