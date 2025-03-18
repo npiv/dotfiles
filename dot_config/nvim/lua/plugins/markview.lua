@@ -70,16 +70,18 @@ return {
           enable = false,
         },
 
-        headings = {
-          enable = false,
+        markdown = {
+          headings = {
+            enable = false,
+          },
+          list_items = {
+            indent_size = 1,
+            shift_width = 2,
+          },
         },
 
         links = {
           enable = true,
-        },
-        list_items = {
-          indent_size = 1,
-          shift_width = 2,
         },
       }
     end,
