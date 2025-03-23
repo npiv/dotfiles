@@ -4,7 +4,8 @@ local config = wezterm.config_builder()
 
 config.color_scheme = "Catppuccin Macchiato"
 
-local font = "JetbrainsMono Nerd Font"
+--local font = "JetbrainsMono Nerd Font"
+local font = "Maple Mono NF"
 config.font = wezterm.font_with_fallback({
 	font,
 	"Hack",
