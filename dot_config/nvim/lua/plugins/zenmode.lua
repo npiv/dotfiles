@@ -13,7 +13,6 @@ return {
           },
           plugins = {
             tmux = { enabled = true },
-            zellij = { enabled = true },
             gitsigns = { enabled = true },
             alacritty = {
               enabled = true,
@@ -21,7 +20,7 @@ return {
             },
             wezterm = {
               enabled = true,
-              font = '+1',
+              font = '+2',
             },
           },
           on_open = function(win) end,

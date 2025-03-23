@@ -25,5 +25,7 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 vim.keymap.set('n', '<leader>ss', '<cmd>set spell<CR>')
 
 -- move lines up and down
-vim.keymap.set('v', '<down>', ":m '>+1<CR>gv=gv", { silent = true })
 vim.keymap.set('v', '<up>', ":m '<-2<CR>gv=gv", { silent = true })
+vim.keymap.set('v', '<down>', ":m '>+1<CR>gv=gv", { silent = true })
+
+vim.keymap.set('n', '<leader>ya', 'ggyG')

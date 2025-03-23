@@ -26,9 +26,9 @@ return {
     },
 
     daily_notes = {
-      folder = 'dailies',
-      date_format = '%Y-%m-%d',
-      default_tags = { 'daily-notes' },
+      folder = 'journal',
+      date_format = '%Y/%m/%Y-%m-%d',
+      default_tags = { 'journal-daily' },
     },
 
     attachments = {
@@ -79,6 +79,7 @@ return {
 
           -- vim.g.vim_markdown_frontmatter = 1
           -- vim.o.conceallevel = 2
+          vim.cmd 'Copilot disable'
           vim.cmd 'PencilSoft'
         end,
       }),
