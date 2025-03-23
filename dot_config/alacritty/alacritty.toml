@@ -26,5 +26,8 @@ y = 8
 size = 14
 
 [font.normal]
-family = "JetbrainsMono Nerd Font"
+#family = "JetbrainsMono Nerd Font"
+#family = "Cascadia Code NF"
+family = "FiraCode Nerd Font Mono"
+#family = "Maple Mono NF"
 
