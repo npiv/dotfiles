@@ -35,9 +35,6 @@ alias ff "fzf --preview 'bat --style=numbers --color=always {}'"
 alias gob 'nvim (fd -t f . ~/Documents/darkwood/notes/ | fzf --preview "bat --color=always --wrap=character --style=plain --terminal-width=70 {}" --select-1 --exit-0 --delimiter / --with-nth -1)'
 
 # AI / Chat Tools
-alias c chatblade
-alias chat "chatblade -c 4t -s -i"
-alias ask "chatblade -c 4t -s"
 alias aideride 'aider --watch-files --no-auto-commits --yes-always --gitignore'
 
 # Chezmoi
@@ -52,11 +49,6 @@ alias k kubectl
 alias docker-by-mem 'docker stats --no-stream --format "table {{.MemPerc}}\t{{.Name}}" | sort -r -k1'
 
 # --- Environment Variables ---
-
-# Set and export BAT_THEME
-set -gx BAT_THEME "base16"
-
-# --- Functions ---
 
 # Git quick push (add all, commit with message, push to origin main)
 # Fish functions use $argv for arguments, $argv[1] corresponds to $1 in bash
