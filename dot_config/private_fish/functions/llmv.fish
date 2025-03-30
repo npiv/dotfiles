@@ -1,4 +1,4 @@
-function llmv --description "Edit text in vi, pipe to llm, passing arguments"
+function llmv --description "Edit text in vi, pipe to llm, passing arguments" --wraps llm
     # 1. Create a temporary file
     set -l tmpfile (mktemp)
 

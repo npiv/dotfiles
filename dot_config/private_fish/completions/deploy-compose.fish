@@ -1,0 +1,1 @@
+complete --command deploy-compose --no-files --arguments "(env _DEPLOY_COMPOSE_COMPLETE=complete_fish _TYPER_COMPLETE_FISH_ACTION=get-args _TYPER_COMPLETE_ARGS=(commandline -cp) ./deploy-compose)" --condition "env _DEPLOY_COMPOSE_COMPLETE=complete_fish _TYPER_COMPLETE_FISH_ACTION=is-args _TYPER_COMPLETE_ARGS=(commandline -cp) ./deploy-compose"
