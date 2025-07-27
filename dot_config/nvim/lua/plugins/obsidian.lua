@@ -79,7 +79,6 @@ return {
 
           -- vim.g.vim_markdown_frontmatter = 1
           -- vim.o.conceallevel = 2
-          vim.cmd 'Copilot disable'
           vim.cmd 'PencilSoft'
         end,
       }),

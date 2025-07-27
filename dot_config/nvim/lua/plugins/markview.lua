@@ -12,6 +12,7 @@ return {
     'OXY2DEV/markview.nvim',
     enabled = true,
     lazy = false, -- Recommended
+    priority = 49,
 
     dependencies = {
       'nvim-treesitter/nvim-treesitter',
