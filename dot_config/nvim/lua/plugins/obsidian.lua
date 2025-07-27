@@ -20,7 +20,7 @@ return {
   opts = {
     workspaces = {
       {
-        name = 'darkwood',
+        name = 'nvmind',
         path = '~/Documents/nvmind',
       },
     },
