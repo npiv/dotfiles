@@ -9,13 +9,6 @@ alias gla="git log --pretty=format:'%C(yellow)%h%Cred%d%Creset - %C(cyan)%an %Cr
 alias gl="gla -20"
 alias gll="gla --graph"
 
-# bare git strategy for dotfiles https://news.ycombinator.com/item?id=11070797
-#
-# INIT
-#  git init --bare $HOME/.myconf
-#  alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
-#  config config status.showUntrackedFiles no
-#
-# LOAD
-#  git clone --separate-git-dir=~/.myconf git@github.com:npiv/dotfiles.git ~
 alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
+
+export PATH=$PATH:~/.scripts
