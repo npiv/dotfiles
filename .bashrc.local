@@ -5,6 +5,10 @@ alias vi=nvim
 
 alias k=kubectl
 
+alias gla="git log --pretty=format:'%C(yellow)%h%Cred%d%Creset - %C(cyan)%an %Creset: %s %Cgreen(%cr)'"
+alias gl="gla -20"
+alias gll="gla --graph"
+
 # bare git strategy for dotfiles https://news.ycombinator.com/item?id=11070797
 #
 # INIT
