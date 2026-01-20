@@ -1,0 +1,76 @@
+#1761931450
+exit
+#1761931489
+brew install eza
+#1761931508
+brew install neovim
+#1761931535
+exit
+#1761931735
+chsh -s bash
+#1761931742
+chsh -s /bin/bash 
+#1761931745
+exit
+#1761931766
+vi
+#1761931784
+exit
+#1761931965
+chsh -s /bin/bash 
+#1761931970
+exit
+exit
+#1761977787
+which bash
+#1761977985
+brew
+#1761977989
+which brew
+#1761978017
+vi ~/.bashrc
+#1761978039
+vi ~/.config/alacritty/
+#1761978090
+exit
+bash
+/Applications/Alacritty.app/Contents/MacOS/alacritty migrate
+exit
+#1761978113
+vi ~/.config/alacritty/
+#1761978131
+vi ~/.bashrc
+vi ~/.wezterm.lua 
+exit
+#1761978512
+brew install --cask font-maple-mono-nf
+#1761978553
+exit
+bash
+exit
+exit
+exit
+#1761978562
+vi ~/.wezterm.lua 
+exit
+#1761984381
+zellij
+#1761992774
+mkdir code
+#1761992775
+cd code
+#1761992790
+t@github.com:npiv/lima-lang.giT
+#1761992833
+vi ~/.wezterm.lua 
+#1761992919
+git clone git@github.com:npiv/lima-lang.git
+#1761993049
+cd lima-lang/
+#1761993192
+brew install openjdk
+#1761993229
+brew install maven
+#1761993234
+brew doctor
+exit

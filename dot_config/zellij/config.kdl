@@ -1,3 +1,4 @@
+scrollback_editor "/opt/homebrew/bin/nvim"
 themes {
   catppuccin {
     bg "#626880" // Surface2

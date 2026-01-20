@@ -21,13 +21,14 @@ return {
     workspaces = {
       {
         name = 'nvmind',
-        path = '~/Documents/nvmind',
+        path = '~/Documents/32gratitude',
       },
     },
 
     daily_notes = {
-      folder = 'journal',
-      date_format = '%Y/%m/%Y-%m-%d',
+      folder = 'Journal',
+      --      date_format = '%Y/%m/%Y-%m-%d',
+      date_format = '%Y-%m-%d',
       default_tags = { 'journal-daily' },
     },
 

@@ -37,6 +37,10 @@ alias gob 'nvim (fd -t f . ~/Documents/darkwood/notes/ | fzf --preview "bat --co
 # AI / Chat Tools
 alias aideride 'aider --watch-files --no-auto-commits --yes-always --gitignore'
 
+# Journal Processing
+alias complete_journal 'uv run ~/bin/process_journal.py --file ~/Documents/32gratitude/Journal/(date +%Y-%m-%d).md'
+alias complete_journal_gem 'uv run ~/bin/process_journal.py --file ~/Documents/32gratitude/Journal/(date +%Y-%m-%d).md --provider gemini'
+
 # Chezmoi
 alias chedit "chezmoi edit --apply"
 
@@ -47,6 +51,10 @@ alias pnpx "pnpm dlx"
 alias d podman
 alias k kubectl
 alias docker-by-mem 'docker stats --no-stream --format "table {{.MemPerc}}\t{{.Name}}" | sort -r -k1'
+
+# fabric
+alias fabric fabric-ai
+alias ?? fabric-ai
 
 # --- Environment Variables ---
 

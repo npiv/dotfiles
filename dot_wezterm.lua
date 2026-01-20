@@ -12,6 +12,8 @@ config.font = wezterm.font_with_fallback({
 	"DejaVu Sans Mono",
 })
 
+--config.default_prog = { "/opt/homebrew/bin/bash" }
+
 config.font_size = 14.5
 config.window_background_opacity = 0.94
 config.macos_window_background_blur = 30
@@ -32,15 +34,6 @@ config.window_padding = { left = 8, right = 0, top = 18, bottom = 10 }
 config.scrollback_lines = 10000
 config.cursor_thickness = 2
 config.default_cursor_style = "SteadyBar"
-
-config.keys = {
-	-- search for things that look like git hashes
-	{
-		key = "H",
-		mods = "SHIFT|CTRL",
-		action = wezterm.action.Search({ Regex = "[a-f0-9]{6,}" }),
-	},
-}
 
 wezterm.on("user-var-changed", function(window, pane, name, value)
 	local overrides = window:get_config_overrides() or {}
@@ -64,6 +57,10 @@ wezterm.on("user-var-changed", function(window, pane, name, value)
 	end
 	window:set_config_overrides(overrides)
 end)
+
+config.keys = {
+	{ key = "Enter", mods = "SHIFT", action = wezterm.action.SendKey({ key = "J", mods = "CTRL" }) },
+}
 
 -- and finally, return the configuration to wezterm
 return config

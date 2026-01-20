@@ -1,16 +1,13 @@
-
-live_config_reload = true
-import = ["~/.config/alacritty/catppuccin/catppuccin-macchiato.toml"]
 # import = ["~/.config/alacritty/tokyo/night.toml"]
-#[shell]
-#program = "/bin/bash"
+[terminal.shell]
+program = "/bin/bash"
 #args = ["-l", "-c", "zellij"]
 
 [env]
 TERM = "xterm-256color"
 
 [window]
-# startup_mode = "SimpleFullscreen"
+startup_mode = "SimpleFullscreen"
 decorations = "None"
 dynamic_padding = true
 option_as_alt = "Both"
@@ -29,5 +26,12 @@ size = 14
 #family = "JetbrainsMono Nerd Font"
 #family = "Cascadia Code NF"
 family = "FiraCode Nerd Font Mono"
+
+[general]
+
+live_config_reload = true
+import = ["~/.config/alacritty/catppuccin/catppuccin-macchiato.toml"]
+
+[terminal]
 #family = "Maple Mono NF"
 
