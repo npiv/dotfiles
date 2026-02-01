@@ -1,0 +1,8 @@
+{
+  "name": "excalidraw-obsidian-parser",
+  "version": "1.0.0",
+  "description": "Parse Excalidraw Obsidian markdown files and convert to raw Excalidraw JSON",
+  "dependencies": {
+    "lz-string": "^1.5.0"
+  }
+}
