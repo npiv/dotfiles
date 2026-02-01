@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+set -eu
+
+REPO_DIR="/Users/npiv/code/dotfiles"
+PACKAGES="fish nvim alacritty zellij tmux wezterm claude userbin codex"
+
+cd "$REPO_DIR"
+
+git pull --ff-only
+stow --adopt -v -t ~ $PACKAGES

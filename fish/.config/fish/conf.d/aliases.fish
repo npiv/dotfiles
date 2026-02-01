@@ -9,7 +9,7 @@ alias gs "git status -sb"
 alias gla "git log --pretty=format:'%C(yellow)%h%Cred%d%Creset - %C(cyan)%an %Creset: %s %Cgreen(%cr)'"
 alias gl "gla -20"
 alias gll "gla --graph"
-alias gpom "git push origin master" # Consider changing 'master' to 'main' if that's your default branch
+alias gpom "git push origin main" # Consider changing 'master' to 'main' if that's your default branch
 
 # General Utils
 alias cls clear

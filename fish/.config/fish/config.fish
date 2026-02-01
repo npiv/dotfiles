@@ -6,5 +6,7 @@ end
 
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
-set --export PATH $BUN_INSTALL/bin $PATH
-set --export PATH /Users/npiv/code/data/bin/ $PATH
+fish_add_path -g $BUN_INSTALL/bin /Users/npiv/.local/userbin
+
+# lifedashboard
+alias UpdateDashboard="cd /Users/npiv/code/lifedashboard; bun feeder:prod --all --days 1"

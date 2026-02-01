@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+set -eu
+
+if [ $# -lt 1 ]; then
+  echo "usage: StowSave <commit message>" >&2
+  exit 1
+fi
+
+MSG="$*"
+REPO_DIR="/Users/npiv/code/dotfiles"
+PACKAGES="fish nvim alacritty zellij tmux wezterm claude userbin codex"
+
+cd "$REPO_DIR"
+
+stow -v -t ~ $PACKAGES
+
+git add -A
+git commit -m "$MSG"
+git push origin stow
