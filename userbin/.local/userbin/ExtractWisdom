@@ -1,0 +1,171 @@
+#!/usr/bin/env -S uv run --quiet --script
+# /// script
+# requires-python = ">=3.12"
+# dependencies = [
+#     "google-genai",
+#     "python-dotenv",
+# ]
+# ///
+
+"""
+ExtractWisdom - Extract insights, ideas, and wisdom from text content using Google Gemini
+
+Usage:
+    ExtractWisdom <input_file>
+    cat content.txt | ExtractWisdom
+    ExtractWisdom --url <url>
+
+Options:
+    -o, --output FILE   Output file (default: stdout)
+    -u, --url URL       Fetch content from URL
+    -h, --help          Show this help message
+"""
+
+import sys
+import argparse
+import os
+from pathlib import Path
+
+try:
+    from google import genai
+    from dotenv import load_dotenv
+except ImportError as e:
+    print(f"Error importing required modules: {e}", file=sys.stderr)
+    sys.exit(1)
+
+
+EXTRACT_WISDOM_PROMPT = """# IDENTITY and PURPOSE
+
+You extract surprising, insightful, and interesting information from text content. You are interested in insights related to the purpose and meaning of life, human flourishing, the role of technology in the future of humanity, artificial intelligence and its affect on humans, memes, learning, reading, books, continuous improvement, and similar topics.
+
+Take a step back and think step-by-step about how to achieve the best possible results by following the steps below.
+
+# STEPS
+- Pull out the 5 most important takeaways from the conversation and summarize them in your own words. Use quotes or direct references where possible but simplify it to the essence.
+
+- Pull out any interesting quotes from the conversation, either as paraphrased by the speakers or from the speakers directly. Up to 5 maximum.
+
+Create final 2 line summary on why this text was interesting in the context of human potential or growth
+
+# Rules
+- Do not repeat ideas, insights, quotes, habits, facts, or references.
+- Do not start items with the same opening words.
+- Ensure you follow ALL these instructions when creating your output.
+
+# INPUT
+INPUT:
+"""
+
+
+def fetch_url_content(url):
+    """Fetch content from a URL."""
+    try:
+        import urllib.request
+        with urllib.request.urlopen(url) as response:
+            return response.read().decode('utf-8')
+    except Exception as e:
+        print(f"Error fetching URL: {e}", file=sys.stderr)
+        return None
+
+
+def extract_wisdom(content, api_key):
+    """Extract wisdom from content using Google Gemini."""
+    try:
+        client = genai.Client(api_key=api_key)
+
+        # Combine prompt with content
+        full_prompt = EXTRACT_WISDOM_PROMPT + "\n\n" + content
+
+        # Generate response using Gemini 1.5 Flash for fast processing
+        response = client.models.generate_content(
+            model='gemini-3-pro-preview',
+            contents=full_prompt
+        )
+
+        return response.text
+
+    except Exception as e:
+        print(f"Error calling Gemini API: {e}", file=sys.stderr)
+        return None
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Extract insights and wisdom from text content using Google Gemini",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  ExtractWisdom article.txt
+  cat transcript.txt | ExtractWisdom
+  ExtractWisdom --url https://example.com/article -o insights.md
+
+Environment:
+  GOOGLE_API_KEY    Google AI API key (required)
+        """
+    )
+
+    parser.add_argument("input", nargs="?", help="Input file (default: stdin)")
+    parser.add_argument("-o", "--output", help="Output file (default: stdout)")
+    parser.add_argument("-u", "--url", help="Fetch content from URL")
+
+    args = parser.parse_args()
+
+    # Load environment variables
+    load_dotenv()
+
+    # Get API key
+    api_key = os.getenv("GOOGLE_API_KEY")
+    if not api_key:
+        print("Error: GOOGLE_API_KEY environment variable not set", file=sys.stderr)
+        print("\nSet it in .env file or export GOOGLE_API_KEY=your_key", file=sys.stderr)
+        return 1
+
+    # Get input content
+    content = None
+
+    if args.url:
+        print("Fetching content from URL...", file=sys.stderr)
+        content = fetch_url_content(args.url)
+    elif args.input:
+        try:
+            with open(args.input, 'r', encoding='utf-8') as f:
+                content = f.read()
+        except Exception as e:
+            print(f"Error reading input file: {e}", file=sys.stderr)
+            return 1
+    else:
+        # Read from stdin
+        if sys.stdin.isatty():
+            print("Error: No input provided. Use a file, URL, or pipe content via stdin", file=sys.stderr)
+            parser.print_help()
+            return 1
+        content = sys.stdin.read()
+
+    if not content:
+        print("Error: No content to process", file=sys.stderr)
+        return 1
+
+    # Extract wisdom
+    print("Extracting wisdom...", file=sys.stderr)
+    result = extract_wisdom(content, api_key)
+
+    if result is None:
+        return 1
+
+    # Output
+    if args.output:
+        try:
+            with open(args.output, 'w', encoding='utf-8') as f:
+                f.write(result)
+            print(f"Wisdom extracted to: {args.output}", file=sys.stderr)
+        except Exception as e:
+            print(f"Error writing output file: {e}", file=sys.stderr)
+            return 1
+    else:
+        print(result)
+
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

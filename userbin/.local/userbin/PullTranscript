@@ -1,0 +1,205 @@
+#!/usr/bin/env -S uv run --quiet --script
+# /// script
+# requires-python = ">=3.12"
+# dependencies = [
+#     "yt-dlp",
+# ]
+# ///
+
+"""
+PullTranscript - Extract transcripts from YouTube videos
+
+Usage:
+    PullTranscript <youtube_url> [options]
+
+Options:
+    -l, --lang LANG     Subtitle language (default: en)
+    -o, --output FILE   Output file (default: stdout)
+    -f, --format FMT    Format: txt, srt, vtt (default: txt)
+    --auto              Use auto-generated subs only
+    --manual            Use manual subs only (default: prefer manual, fallback to auto)
+"""
+
+import sys
+import argparse
+import subprocess
+import json
+import tempfile
+import os
+from pathlib import Path
+
+
+def get_available_subtitles(url):
+    """Get list of available subtitles for the video."""
+    try:
+        result = subprocess.run(
+            ["yt-dlp", "--list-subs", "--skip-download", url],
+            capture_output=True,
+            text=True,
+            check=True
+        )
+        return result.stdout
+    except subprocess.CalledProcessError as e:
+        print(f"Error listing subtitles: {e.stderr}", file=sys.stderr)
+        return None
+
+
+def extract_transcript(url, lang="en", format="txt", prefer_manual=True):
+    """Extract transcript from YouTube video."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        output_template = os.path.join(tmpdir, "transcript.%(ext)s")
+
+        # yt-dlp doesn't support txt directly, so download as vtt for txt requests
+        download_format = "vtt" if format == "txt" else format
+
+        # Build yt-dlp command
+        cmd = [
+            "yt-dlp",
+            "--skip-download",
+            "--write-subs",
+            "--write-auto-subs",
+            "--sub-lang", lang,
+            "--sub-format", download_format,
+            "--convert-subs", download_format,
+            "-o", output_template,
+            url
+        ]
+
+        try:
+            result = subprocess.run(
+                cmd,
+                capture_output=True,
+                text=True,
+                check=True
+            )
+
+            # Find the subtitle file - try multiple patterns
+            subtitle_files = []
+            patterns = [
+                f"*.{lang}.{download_format}",
+                f"*.{lang}-*.{download_format}",
+                f"*{lang}*.{download_format}",
+            ]
+
+            for pattern in patterns:
+                subtitle_files = list(Path(tmpdir).glob(pattern))
+                if subtitle_files:
+                    break
+
+            if not subtitle_files:
+                print(f"No subtitles found for language '{lang}'", file=sys.stderr)
+                print("\nTry listing available subtitles with:", file=sys.stderr)
+                print(f"  PullTranscript --list {url}", file=sys.stderr)
+                return None
+
+            # Read the subtitle file
+            with open(subtitle_files[0], 'r', encoding='utf-8') as f:
+                content = f.read()
+
+            return content
+
+        except subprocess.CalledProcessError as e:
+            print(f"Error extracting transcript: {e.stderr}", file=sys.stderr)
+            return None
+
+
+def clean_txt_transcript(content):
+    """Clean up VTT transcript by removing timestamps and duplicate lines."""
+    import re
+
+    lines = content.split('\n')
+    cleaned = []
+    prev_line = None
+
+    for line in lines:
+        line = line.strip()
+
+        # Skip empty lines
+        if not line:
+            continue
+
+        # Skip WEBVTT header and metadata
+        if line.startswith('WEBVTT') or line.startswith('Kind:') or line.startswith('Language:'):
+            continue
+
+        # Skip timestamp lines (format: 00:00:00.000 --> 00:00:00.000)
+        if '-->' in line:
+            continue
+
+        # Skip lines that are just numbers (cue identifiers)
+        if line.isdigit():
+            continue
+
+        # Skip lines with timestamp-like patterns
+        if re.match(r'^\d{2}:\d{2}:\d{2}', line):
+            continue
+
+        # Skip HTML tags that sometimes appear in VTT
+        line = re.sub(r'<[^>]+>', '', line)
+
+        # Skip if line is now empty after tag removal
+        if not line.strip():
+            continue
+
+        # Skip duplicate consecutive lines
+        if line == prev_line:
+            continue
+
+        cleaned.append(line)
+        prev_line = line
+
+    return '\n'.join(cleaned)
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Extract transcripts from YouTube videos",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  PullTranscript "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+  PullTranscript "https://youtu.be/dQw4w9WgXcQ" -l es -o transcript.txt
+  PullTranscript "https://www.youtube.com/watch?v=dQw4w9WgXcQ" -f srt
+        """
+    )
+
+    parser.add_argument("url", help="YouTube video URL")
+    parser.add_argument("-l", "--lang", default="en", help="Subtitle language (default: en)")
+    parser.add_argument("-o", "--output", help="Output file (default: stdout)")
+    parser.add_argument("-f", "--format", choices=["txt", "srt", "vtt"], default="txt",
+                       help="Subtitle format (default: txt)")
+    parser.add_argument("--list", action="store_true", help="List available subtitles and exit")
+    parser.add_argument("--no-clean", action="store_true", help="Don't clean up txt format")
+
+    args = parser.parse_args()
+
+    # List subtitles if requested
+    if args.list:
+        subs = get_available_subtitles(args.url)
+        if subs:
+            print(subs)
+        return 0
+
+    # Extract transcript
+    transcript = extract_transcript(args.url, args.lang, args.format)
+
+    if transcript is None:
+        return 1
+
+    # Clean up txt format unless disabled
+    if args.format == "txt" and not args.no_clean:
+        transcript = clean_txt_transcript(transcript)
+
+    # Output
+    if args.output:
+        with open(args.output, 'w', encoding='utf-8') as f:
+            f.write(transcript)
+        print(f"Transcript saved to: {args.output}", file=sys.stderr)
+    else:
+        print(transcript)
+
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

@@ -5,3 +5,4 @@ These dotfiles expect the following tools to be installed (install them however 
 - eza
 - fzf
 - nvim
+- uv
