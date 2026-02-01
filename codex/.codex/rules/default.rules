@@ -1,0 +1,4 @@
+prefix_rule(pattern=["git", "commit"], decision="allow")
+prefix_rule(pattern=["git", "add"], decision="allow")
+prefix_rule(pattern=["git", "checkout", "main"], decision="allow")
+prefix_rule(pattern=["bunx", "tsc", "--noEmit"], decision="allow")

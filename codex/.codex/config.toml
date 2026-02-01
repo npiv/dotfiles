@@ -1,0 +1,32 @@
+[projects."/Users/npiv/code/ankimaker"]
+trust_level = "trusted"
+
+[projects."/Users/npiv/code/data"]
+trust_level = "trusted"
+
+[projects."/Users/npiv"]
+trust_level = "untrusted"
+
+[projects."/Users/npiv/code/lifedashboard"]
+trust_level = "trusted"
+
+[projects."/Users/npiv/code/phrase-learner"]
+trust_level = "trusted"
+
+[projects."/Users/npiv/code/timerapp"]
+trust_level = "trusted"
+
+[projects."/Users/npiv/.codex/skills"]
+trust_level = "untrusted"
+
+
+sandbox_mode = "workspace-write"
+
+[projects."/Users/npiv/code/dotfiles"]
+trust_level = "trusted"
+
+[projects."/Users/npiv/code"]
+trust_level = "untrusted"
+
+[sandbox_workspace_write]
+  network_access = true
