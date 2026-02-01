@@ -1,3 +1,0 @@
-llm logs list -r > ~/.local/npivbin/$1
-uv tool run black ~/.local/npivbin/$1
-chmod +x ~/.local/npivbin/$1
