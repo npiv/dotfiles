@@ -16,4 +16,4 @@ stow -v -t ~ $PACKAGES
 
 git add -A
 git commit -m "$MSG"
-git push origin stow
+git push origin main
