@@ -6,3 +6,7 @@ These dotfiles expect the following tools to be installed (install them however 
 - fzf
 - nvim
 - uv
+
+
+https://github.com/jorgebucaran/fisher
+https://github.com/jorgebucaran/fisher
