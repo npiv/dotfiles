@@ -10,14 +10,10 @@ __tmuxai_resolve_agent_cmd() {
 }
 
 # Create a tmux dev layout with editor + AI pane (+ optional second AI pane) + terminal strip.
-# Usage: CreateAiDevLayout <pi|codex|command> [<second_pi|second_codex|second_command>]
-CreateAiDevLayout() {
-  if [ -z "$1" ]; then
-    echo "Usage: CreateAiDevLayout <pi|codex|command> [<second_pi|second_codex|second_command>]"
-    return 1
-  fi
+# Usage: TmuxDevLayout [<pi|codex|command>] [<second_pi|second_codex|second_command>]
+TmuxDevLayout() {
   if [ -z "$TMUX" ]; then
-    echo "You must start tmux to use CreateAiDevLayout."
+    echo "You must start tmux to use TmuxDevLayout."
     return 1
   fi
 
@@ -25,7 +21,7 @@ CreateAiDevLayout() {
   local ai_cmd ai2_cmd
   current_dir="$PWD"
   editor_pane="$TMUX_PANE"
-  ai_cmd="$(__tmuxai_resolve_agent_cmd "$1")"
+  ai_cmd="$(__tmuxai_resolve_agent_cmd "${1:-pi}")"
   ai2_cmd=""
   if [ -n "$2" ]; then
     ai2_cmd="$(__tmuxai_resolve_agent_cmd "$2")"
@@ -50,26 +46,23 @@ CreateAiDevLayout() {
   tmux select-pane -t "$editor_pane"
 }
 
-# Create one tmux window per subdirectory, each with CreateAiDevLayout.
-# Usage: CreateAiDevLayoutsForSubdirs <pi|codex|command> [<second_pi|second_codex|second_command>]
-CreateAiDevLayoutsForSubdirs() {
-  if [ -z "$1" ]; then
-    echo "Usage: CreateAiDevLayoutsForSubdirs <pi|codex|command> [<second_pi|second_codex|second_command>]"
-    return 1
-  fi
+# Create one tmux window per subdirectory, each with TmuxDevLayout.
+# Usage: TmuxDevLayoutsForSubdirs [<pi|codex|command>] [<second_pi|second_codex|second_command>]
+TmuxDevLayoutsForSubdirs() {
   if [ -z "$TMUX" ]; then
-    echo "You must start tmux to use CreateAiDevLayoutsForSubdirs."
+    echo "You must start tmux to use TmuxDevLayoutsForSubdirs."
     return 1
   fi
 
   local base_dir first dir dirpath pane_id
-  local layout_cmd dir_quoted
+  local layout_cmd dir_quoted primary_cmd
   base_dir="$PWD"
   first=1
+  primary_cmd="${1:-pi}"
 
   tmux rename-session "$(basename "$base_dir" | tr '.:' '--')"
 
-  layout_cmd="CreateAiDevLayout $(printf '%q' "$1")"
+  layout_cmd="TmuxDevLayout $(printf '%q' "$primary_cmd")"
   if [ -n "$2" ]; then
     layout_cmd="$layout_cmd $(printf '%q' "$2")"
   fi
@@ -95,14 +88,14 @@ CreateAiDevLayoutsForSubdirs() {
 }
 
 # Create a multi-pane swarm layout and run the same command in all panes.
-# Usage: CreateAiSwarmLayout <pane_count> <pi|codex|command...>
-CreateAiSwarmLayout() {
-  if [ -z "$1" ] || [ -z "$2" ]; then
-    echo "Usage: CreateAiSwarmLayout <pane_count> <pi|codex|command...>"
+# Usage: TmuxSwarmLayout <pane_count> [<pi|codex|command...>]
+TmuxSwarmLayout() {
+  if [ -z "$1" ]; then
+    echo "Usage: TmuxSwarmLayout <pane_count> [<pi|codex|command...>]"
     return 1
   fi
   if [ -z "$TMUX" ]; then
-    echo "You must start tmux to use CreateAiSwarmLayout."
+    echo "You must start tmux to use TmuxSwarmLayout."
     return 1
   fi
 
@@ -122,7 +115,9 @@ CreateAiSwarmLayout() {
     return 1
   fi
 
-  if [ "$#" -eq 1 ]; then
+  if [ "$#" -eq 0 ]; then
+    cmd="pi"
+  elif [ "$#" -eq 1 ]; then
     cmd="$(__tmuxai_resolve_agent_cmd "$1")"
   else
     cmd="$*"
@@ -149,3 +144,7 @@ CreateAiSwarmLayout() {
 
   tmux select-pane -t "${panes[0]}"
 }
+
+alias tdl='TmuxDevLayout'
+alias tdlfs='TmuxDevLayoutsForSubdirs'
+alias tsl='TmuxSwarmLayout'

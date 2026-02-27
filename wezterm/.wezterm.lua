@@ -15,8 +15,8 @@ config.font = wezterm.font_with_fallback({
 --config.default_prog = { "/opt/homebrew/bin/bash" }
 
 config.font_size = 14.5
-config.window_background_opacity = 0.94
-config.macos_window_background_blur = 30
+-- config.window_background_opacity = 0.94
+-- config.macos_window_background_blur = 30
 config.window_frame = {
 	font = wezterm.font({ family = font, weight = "Bold" }),
 	font_size = 14,
@@ -30,7 +30,7 @@ config.window_decorations = "RESIZE"
 config.hide_tab_bar_if_only_one_tab = true
 config.tab_max_width = 60
 config.use_fancy_tab_bar = false
-config.window_padding = { left = 8, right = 0, top = 18, bottom = 10 }
+config.window_padding = { left = 8, right = 0, top = 8, bottom = 10 }
 config.scrollback_lines = 10000
 config.cursor_thickness = 2
 config.default_cursor_style = "SteadyBar"
