@@ -1,3 +1,6 @@
+personality = "pragmatic"
+model = "gpt-5.3-codex"
+model_reasoning_effort = "medium"
 [projects."/Users/npiv/code/ankimaker"]
 trust_level = "trusted"
 
@@ -27,6 +30,9 @@ trust_level = "trusted"
 
 [projects."/Users/npiv/code"]
 trust_level = "untrusted"
+
+[projects."/Users/npiv/code/lore"]
+trust_level = "trusted"
 
 [sandbox_workspace_write]
   network_access = true

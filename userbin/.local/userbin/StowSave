@@ -8,7 +8,7 @@ fi
 
 MSG="$*"
 REPO_DIR="/Users/npiv/code/dotfiles"
-PACKAGES="fish nvim alacritty zellij tmux wezterm claude userbin codex"
+PACKAGES="bash nvim alacritty zellij tmux wezterm claude userbin"
 
 cd "$REPO_DIR"
 
