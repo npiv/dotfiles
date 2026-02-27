@@ -39,6 +39,7 @@ load_env_vars() {
 # Interactive init
 if [[ $- == *i* ]]; then
   if command -v zoxide >/dev/null 2>&1; then
+    export _ZO_DOCTOR=0
     eval "$(zoxide init bash)"
   fi
 
