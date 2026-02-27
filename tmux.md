@@ -2,7 +2,7 @@
 
 Based on `tmux/.tmux.conf` in this repo.
 
-> **Prefix key:** `C-b` (default tmux prefix, since this config does not override it)
+> **Prefix keys:** `Ctrl-Space` (primary) and `Ctrl-b` (secondary)
 
 ---
 
@@ -10,10 +10,10 @@ Based on `tmux/.tmux.conf` in this repo.
 
 | Key | Action |
 |---|---|
-| `Ctrl-p` | Toggle popup session (`popup`): open centered popup, or detach if already in popup session |
 | `Alt-h/j/k/l` | Move to pane left/down/up/right |
 | `Shift-Left` | Previous window |
 | `Shift-Right` | Next window |
+| `Alt-1..9` | Jump directly to window 1..9 |
 
 ---
 
@@ -29,15 +29,24 @@ Based on `tmux/.tmux.conf` in this repo.
 | `*` | Swap pane upward |
 | `s` | Toggle synchronize-panes |
 
-### Windows & sessions
+### Windows
 
 | Key | Action |
 |---|---|
-| `c` | Prompt for new window name, then create it |
+| `c` | Create a new window in current pane path |
 | `X` | Kill current window |
 | `z` | Jump to last window |
-| `L` | Choose session |
-| `Ctrl-j` | Popup `fzf` session switcher |
+
+### Sessions
+
+| Key | Action |
+|---|---|
+| `C` | Create new session in current pane path |
+| `R` | Rename current session |
+| `K` | Kill current session |
+| `P` | Switch to previous session |
+| `N` | Switch to next session |
+| `Ctrl-j` | Popup `fzf` session picker and switch |
 
 ### Utilities
 
@@ -85,5 +94,6 @@ Common TPM keys (available when TPM is loaded):
 - Clipboard integration enabled (`set-clipboard on`)
 - Windows and panes start at index `1`
 - Windows auto-renumber after close
+- `detach-on-destroy off` (tries to keep client attached when destroying sessions/windows)
 - Status bar at top
 - Status-right shows `PREFIX` indicator when prefix is active
