@@ -18,7 +18,10 @@ Current tmux config uses native tmux status styling (no TPM/powerline required).
 - `bat` — file preview with syntax highlighting.
 - `zoxide` — smarter directory jumping.
 - `atuin` — shell history/search integration.
+- `bash-preexec` — required for reliable Atuin history capture in bash.
 - `yazi` — terminal file manager (`y` helper function).
 - `nvim` — editor used throughout config/scripts.
 - `uv` — Python tool/runtime launcher for scripts.
 - `starship` — prompt/statusline for bash.
+
+Atuin note: install `bash-preexec` (e.g. `brew install bash-preexec`) so commands are actually recorded from interactive bash sessions.

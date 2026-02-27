@@ -43,6 +43,21 @@ if [[ $- == *i* ]]; then
     eval "$(zoxide init bash)"
   fi
 
+  # Atuin history capture in bash relies on preexec/precmd hooks.
+  # Load bash-preexec first when available so both starship and atuin can
+  # register hooks reliably.
+  for bash_preexec in \
+    /opt/homebrew/etc/profile.d/bash-preexec.sh \
+    /usr/local/etc/profile.d/bash-preexec.sh \
+    "$HOME/.bash-preexec.sh"; do
+    if [ -f "$bash_preexec" ]; then
+      # shellcheck disable=SC1090
+      . "$bash_preexec"
+      break
+    fi
+  done
+  unset -v bash_preexec
+
   # Initialize starship before atuin (atuin defines preexec/precmd arrays;
   # starship should install its prompt hook via PROMPT_COMMAND first).
   if command -v starship >/dev/null 2>&1 && [ -f "$HOME/.config/starship.toml" ]; then
