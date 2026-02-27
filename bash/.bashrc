@@ -15,18 +15,13 @@ export PATH="$HOME/.local/bin:$PATH"
 # Personal scripts managed in this dotfiles repo (stowed from userbin/)
 export PATH="$HOME/.local/userbin:$PATH"
 
-# Optional runtime-specific PATH setup
-if [ -f "$HOME/.bashrc.d/bun.sh" ]; then
-  # shellcheck disable=SC1090
-  . "$HOME/.bashrc.d/bun.sh"
-fi
-
-# macOS-specific settings
-if [[ "$OSTYPE" == darwin* ]]; then
-  if [ -f "$HOME/.bashrc.d/osx.sh" ]; then
+# Load modular bash config snippets (paths, functions, OS-specific tweaks, ...)
+if [ -d "$HOME/.bashrc.d" ]; then
+  for rc_file in "$HOME"/.bashrc.d/*; do
+    [ -f "$rc_file" ] || continue
     # shellcheck disable=SC1090
-    . "$HOME/.bashrc.d/osx.sh"
-  fi
+    . "$rc_file"
+  done
 fi
 
 load_env_vars() {
