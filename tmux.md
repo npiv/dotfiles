@@ -53,7 +53,6 @@ Based on `tmux/.tmux.conf` in this repo.
 | Key | Action |
 |---|---|
 | `r` | Reload `~/.tmux.conf` |
-| `Ctrl-l` | Send literal `Ctrl-l` to pane (clear screen in many shells/apps) |
 | `/` | Prompt for a man page topic, then open split with `man <topic>` |
 
 ---

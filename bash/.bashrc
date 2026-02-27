@@ -3,6 +3,8 @@ export EDITOR="nvim"
 
 # Shell behavior
 set -o vi
+# In vi insert mode, bind Ctrl-l to clear-screen (default is unbound and inserts ^L)
+bind -m vi-insert '"\C-l": clear-screen'
 shopt -s histappend
 HISTCONTROL=ignoreboth
 HISTSIZE=32768
@@ -54,6 +56,7 @@ if [[ $- == *i* ]]; then
 fi
 
 # Aliases
+alias try='try-rs'
 alias vi='nvim'
 alias vim='nvim'
 
