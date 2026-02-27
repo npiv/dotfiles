@@ -3,19 +3,9 @@
 Install: clone this repo to `~/code/dotfiles`, then run `stow -v -t ~ bash nvim alacritty zellij tmux wezterm claude userbin` from repo root.
 (Optional) set bash as default shell with `chsh -s /bin/bash` (or your brew bash path).
 
-## tmux plugins (TPM + powerline)
+## tmux
 
-If tmux starts without plugins, install them manually once:
-
-```bash
-mkdir -p ~/.tmux/plugins
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-git clone https://github.com/erikw/tmux-powerline ~/.tmux/plugins/tmux-powerline
-```
-
-Then in `~/.tmux.conf`, keep `run '~/.tmux/plugins/tpm/tpm'` at the end.
-
-Reload tmux config with `tmux source-file ~/.tmux.conf`, then in tmux press `prefix + I` to let TPM install/update plugins.
+Current tmux config uses native tmux status styling (no TPM/powerline required).
 
 ## Required tools
 

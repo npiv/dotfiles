@@ -73,18 +73,14 @@ Enter copy mode with default tmux key (`Prefix` + `[`) then:
 
 ---
 
-## TPM / plugin notes
+## Status line notes
 
-This config loads TPM via:
+This config uses **native tmux status styling** (no TPM/powerline required).
 
-- `run '~/.tmux/plugins/tpm/tpm'`
-- `@plugin 'erikw/tmux-powerline'`
-
-Common TPM keys (available when TPM is loaded):
-
-- `Prefix + I` → install plugins
-- `Prefix + U` → update plugins
-- `Prefix + M-u` → remove unused plugins
+Status shows:
+- Left: current session (`#S`)
+- Right: `PREFIX` indicator (while prefix is active) + host (`#h`)
+- Window list: `index:name` with a highlighted current window
 
 ---
 
