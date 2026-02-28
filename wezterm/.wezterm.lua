@@ -2,6 +2,8 @@ local wezterm = require("wezterm")
 
 local config = wezterm.config_builder()
 
+config.enable_kitty_keyboard = true
+
 config.color_scheme = "Catppuccin Macchiato"
 
 --local font = "JetbrainsMono Nerd Font"
@@ -60,6 +62,7 @@ end)
 
 config.keys = {
 	{ key = "Enter", mods = "SHIFT", action = wezterm.action.SendKey({ key = "J", mods = "CTRL" }) },
+	{ key = "Enter", mods = "CTRL", action = wezterm.action.SendString("\x1b[13;5u") },
 }
 
 -- and finally, return the configuration to wezterm
