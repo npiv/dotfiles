@@ -71,6 +71,8 @@ if [[ $- == *i* ]]; then
   load_env_vars "$HOME/.config/.secret.env"
 fi
 
+eval "$(direnv hook bash)"
+
 # Aliases
 alias try='try-rs'
 alias vi='nvim'

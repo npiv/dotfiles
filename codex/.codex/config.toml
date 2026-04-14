@@ -1,5 +1,5 @@
 personality = "pragmatic"
-model = "gpt-5.3-codex"
+model = "gpt-5.4"
 model_reasoning_effort = "medium"
 [projects."/Users/npiv/code/ankimaker"]
 trust_level = "trusted"
@@ -34,5 +34,14 @@ trust_level = "untrusted"
 [projects."/Users/npiv/code/lore"]
 trust_level = "trusted"
 
+[projects."/Users/npiv/work/tries/limatic_new_site"]
+trust_level = "trusted"
+
+[projects."/Users/npiv/work/tries/factorio"]
+trust_level = "trusted"
+
 [sandbox_workspace_write]
   network_access = true
+
+[notice.model_migrations]
+"gpt-5.3-codex" = "gpt-5.4"
