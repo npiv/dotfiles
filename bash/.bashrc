@@ -78,6 +78,8 @@ alias try='try-rs'
 alias vi='nvim'
 alias vim='nvim'
 
+alias t='task'
+
 alias gs='git status -sb'
 alias gla="git log --pretty=format:'%C(yellow)%h%Cred%d%Creset - %C(cyan)%an %Creset: %s %Cgreen(%cr)'"
 alias gl='gla -20'
