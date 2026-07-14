@@ -21,3 +21,4 @@ prefix_rule(pattern=["rm", "-f", "src/main/kotlin/be/limatic/lore/data/package-i
 prefix_rule(pattern=["./mvnw", "-q", "clean", "-Dtest"], decision="allow")
 prefix_rule(pattern=["./mvnw"], decision="allow")
 prefix_rule(pattern=["bun", "add"], decision="allow")
+prefix_rule(pattern=["mvn"], decision="allow")

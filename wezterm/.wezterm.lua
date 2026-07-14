@@ -27,7 +27,7 @@ config.window_frame = {
 	inactive_titlebar_bg = "#352a21",
 }
 
-config.window_decorations = "RESIZE"
+config.window_decorations = "INTEGRATED_BUTTONS"
 
 config.hide_tab_bar_if_only_one_tab = true
 config.tab_max_width = 60

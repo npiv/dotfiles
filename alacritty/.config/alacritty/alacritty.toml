@@ -7,31 +7,34 @@ program = "/bin/bash"
 TERM = "xterm-256color"
 
 [window]
-startup_mode = "SimpleFullscreen"
-decorations = "None"
+startup_mode = "Maximized"
+decorations = "Transparent"
 dynamic_padding = true
 option_as_alt = "Both"
-# opacity = 0.9
-# blur = true
+opacity = 0.9
+blur = true
+
+[terminal]
+osc52 = "CopyPaste"
 
 
 [window.padding]
-x = 8
-y = 8
+x = 14
+y = 14
 
 [font]
-size = 14
-
-[font.normal]
+size = 16
+normal = { family = "Maple Mono NF", style = "Regular" }
+bold = { family = "Maple Mono NF", style = "Bold" }
+italic = { family = "Maple Mono NF", style = "Italic" }
 #family = "JetbrainsMono Nerd Font"
 #family = "Cascadia Code NF"
-family = "FiraCode Nerd Font Mono"
+#family = "FiraCode Nerd Font Mono"
+#family = "Maple Mono NF"
 
 [general]
 
 live_config_reload = true
 import = ["~/.config/alacritty/catppuccin/catppuccin-macchiato.toml"]
 
-[terminal]
-#family = "Maple Mono NF"
 

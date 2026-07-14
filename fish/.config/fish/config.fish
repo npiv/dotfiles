@@ -10,3 +10,5 @@ fish_add_path -g $BUN_INSTALL/bin /Users/npiv/.local/userbin
 
 # lifedashboard
 alias UpdateDashboard="cd /Users/npiv/code/lifedashboard; bun feeder:prod --all --days 1"
+
+string match -q "$TERM_PROGRAM" "kiro" and . (kiro --locate-shell-integration-path fish)
