@@ -1,6 +1,6 @@
 # dotfiles
 
-Install: clone this repo to `~/code/dotfiles`, then run `stow -v -t ~ bash nvim alacritty zellij tmux wezterm userbin` from repo root.
+Install: clone this repo to `~/code/dotfiles`, then run `stow -v -t ~ bash nvim alacritty zellij tmux wezterm herdr userbin` from repo root.
 (Optional) set bash as default shell with `chsh -s /bin/bash` (or your brew bash path).
 
 ## tmux
